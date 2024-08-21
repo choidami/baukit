@@ -1076,7 +1076,7 @@ class Quantile(Stat):
 
     def quantiles(self, quantiles):
         if not hasattr(quantiles, "cpu"):
-            quantiles = torch.tensor(quantiles)
+            quantiles = torch.tensor(quantiles, dtype=self.dtype, device=self.device)
         qshape = quantiles.shape
         if self.count == 0:
             return torch.full((self.depth,) + qshape, torch.nan)
