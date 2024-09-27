@@ -1064,11 +1064,12 @@ class Quantile(Stat):
             summary = torch.cat(
                 [self.extremes[:, :1], summary, self.extremes[:, 1:]], dim=-1
             )
+            # import pdb;pdb.set_trace()
             weights = torch.cat(
                 [
-                    torch.zeros(weights.shape[0], 1),
+                    torch.zeros(weights.shape[0], 1, device=self.device),
                     weights,
-                    torch.zeros(weights.shape[0], 1),
+                    torch.zeros(weights.shape[0], 1, device=self.device),
                 ],
                 dim=-1,
             )
